@@ -1,0 +1,28 @@
+{
+  "name": "GetFollows",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.10",
+    "express": "^4.18.1",
+    "lodash": "^4.17.21",
+    "morgan": "^1.10.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "tiktok-api": "^0.4.1",
+    "tiktok-app-api": "^1.4.1",
+    "tiktok-scraper": "^1.4.36",
+    "tiktok-scraper-fork": "^1.2.14",
+    "xmldom": "^0.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
