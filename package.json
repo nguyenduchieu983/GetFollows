@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
+    "@gonetone/get-youtube-id-by-url": "^1.0.0",
     "axios": "^0.27.2",
     "follower-count": "^0.5.0"
   },

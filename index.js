@@ -1,9 +1,12 @@
 const axios = require('axios')
 const getFollows = require('follower-count')
+const { channelId } = require('@gonetone/get-youtube-id-by-url')
 
 const BASE_EMAIL_INS = "ndhieuvegia983@gmail.com"
 const BASE_PASSWORD_INS = "Hieu0976930983@"
 const BASE_DOMAIN_TWI = "https://cdn.syndication.twimg.com/widgets/followbutton/info.json?screen_names="
+const BASE_DOMAIN_YTB = "https://www.googleapis.com/youtube/v3/channels?part=statistics&"
+const API_KEY = "AIzaSyCrHTFjvU0x7CBwzPCw-_S-2i2whd99nwo"
 
 /**Get follows count from instagram */
 const runInstagram = async (name) => {
@@ -22,11 +25,20 @@ const runInstagram = async (name) => {
 /**Get follows count from Youtube */
 const runYoutube = async (url) => {
     try {
-        let count = await getFollows.getFollowerCount({
-            type: 'youtube',
-            channel: url
+        let channel_id
+        await channelId(url).then((id) => {
+            if(id) {
+                channel_id = id
+            }
         })
-        console.log('FOLLOWS COUNT: ' + count)
+
+        const channelInfo = await axios({
+            method: 'get',
+            url: `${BASE_DOMAIN_YTB}id=${channel_id}&key=${API_KEY}`
+        })
+        let statisticsData = channelInfo.data.items[0].statistics;
+        let count = statisticsData.subscriberCount;
+        console.log('Subscriber COUNT: ' + count)
     } catch (err) {
         console.log(err)
     }
@@ -61,25 +73,25 @@ const runTiktok = async (name) => {
 }
 
 /**Call Follows count */
-const callFollows = async (socialType, name) => {
+const callFollows = async (socialType, value) => {
     try {
         switch(socialType){
             case "tiktok":
-                runTiktok(name)
+                runTiktok(value)
                 break;
             case "youtube":
-                runYoutube(name)
+                runYoutube(value)
                 break
             case "instagram":
-                runInstagram(name)
+                runInstagram(value)
                 break
             default:
-                runTwitter(name)
+                runTwitter(value)
         }
     } catch (err) {
         console.log(err)
     }
 }
 
-
-callFollows('twitter', 'baolinh2003')
+/*With social is Youtube => value is URL*/
+callFollows('youtube', 'https://www.youtube.com/channel/UCFPvOrXByhC4KxWEGTJcsPA')
