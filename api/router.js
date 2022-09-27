@@ -8,5 +8,3 @@ router.get("/getFollowsCount/twitter", services.runTwitter);
 router.get("/getFollowsCount/tiktok", services.runTiktok);
 
 module.exports = router;
-
-//Commit 1
