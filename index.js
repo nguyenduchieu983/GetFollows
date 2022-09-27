@@ -10,5 +10,4 @@ app.listen(port);
 
 console.log('RESTful API server started on: ' + port);
 
-
-//CODE DEV nha cưng 
+//Code dev nha
