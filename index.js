@@ -9,6 +9,3 @@ app.use("/", route)
 app.listen(port);
 
 console.log('RESTful API server started on: ' + port);
-
-
-//CODE DEV nha cưng 
